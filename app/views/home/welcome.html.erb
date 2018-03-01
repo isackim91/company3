@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="row">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner">
+        <div class="item active">
+          <%= image_tag('game.jpg', :alt => "game character") %>
+          <div class="carousel-caption">
+            <h3>Los Angeles</h3>
+            <p>LA is always so much fun!</p>
+          </div>
+        </div>
+        <div class="item">
+          <%= image_tag('game.jpg', :alt => "game character") %>
+          <div class="carousel-caption">
+            <h3>Chicago</h3>
+            <p>Thank you, Chicago!</p>
+          </div>
+        </div>
+        <div class="item">
+          <%= image_tag('game.jpg', :alt => "game character") %>
+          <div class="carousel-caption">
+            <h3>New York</h3>
+            <p>We love the Big Apple!</p>
+          </div>
+        </div>
+      </div>
+      <!-- Left and right controls -->
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div> <!-- closed row div -->
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-block">
+          <h3 class="card-title">Web Developer</h3>
+          <p class="card-text">I make websites y'all!</p>
+          <a href="#" class="btn btn-primary">Templates</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-block">
+          <h3 class="card-title">News</h3>
+          <p class="card-text">
+            <% @posts.each do |post| %>
+              <h3><%= link_to post.title, post %></h3>
+            <% end %>
+          </p>
+          <a href="#" class="btn btn-primary">More news</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

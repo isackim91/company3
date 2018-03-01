@@ -1,0 +1,19 @@
+<h1>Cart#update_quantity</h1>
+<p>Find me in app/views/cart/update_quantity.html.erb</p>
+
+<div>
+  <%= form_tag update_quantity_path do %>
+    <%= hidden_field_tag :line_item_id, line_item.id %>
+    <%= hidden_field_tag :quantity, line_item.quantity %>
+    <%= number_field_tag :new_quantity, nil, placeholder: "Change Quantity?" %>
+    <%= submit_tag "Update Quantity", class: "btn btn-primary" %>
+  <% end %>
+</div>
+
+@order = current_order
+    new_quantity = params[:new_quantity].to_i
+    line_item_id = params[:line_item_id]
+    line_item = LineItem.find(line_item_id)
+    line_item.quantity = new_quantity
+    line_item.save
+    redirect_back(fallback_location: root_path)

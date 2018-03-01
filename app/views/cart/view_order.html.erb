@@ -1,0 +1,25 @@
+<h2>My Cart</h2>
+<div class="container">
+	<div class="card">
+		<div class="card-body">
+	      <% @line_items.each do |line_item| %>
+	    	<li><%= line_item.product.name %></li>
+	    	<li><%= number_to_currency line_item.product.price %></li>
+	    	<li>Qty: <%= line_item.quantity %></li>
+	    	<li>Subtotal: <%= number_to_currency line_item.line_item_total %></li>
+		</div>
+		<div class="card-footer">
+	  	  <%= form_tag update_quantity_path do %>
+		    <%= hidden_field_tag :line_item_id, line_item.id %>
+		    <%= hidden_field_tag :quantity, line_item.quantity %>
+		    <%= number_field_tag :new_quantity, nil, min: 1, placeholder: "Change Qty?" %>
+		    <%= submit_tag "Update Quantity", class: "btn btn-primary" %>
+		  <% end %>
+		    <%= link_to "Delete", remove_item_path(id: line_item.id), { data: { confirm: "Are you sure you wish to delete the product from your cart?" }, method: :remove_item, class: "btn btn-danger" } %>
+		</div>
+		   <% end %>
+	</div>
+	<br>
+  	<%= link_to "Proceed to Checkout?", checkout_path, class: "btn btn-success" %>
+</div>
+

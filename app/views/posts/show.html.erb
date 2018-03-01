@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @post.title %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @post.user.username %>
+</p>
+
+<p>
+  <strong>Blog entry:</strong>
+  <%= @post.blog_entry.html_safe %>
+</p>
+
+<div id="comments">
+
+    <%= render 'comments/form', comment: @comment %>
+    <% @post.comments.each do |comment| %>
+        <p>
+	    <%= link_to comment.user.username, user_posts_path(name: comment.user.username) %> said...<br />
+	    <%= comment.comment_entry %>
+      <%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %>
+	</p>
+    <% end %>
+
+</div>
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>
